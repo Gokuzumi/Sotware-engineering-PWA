@@ -9,15 +9,15 @@ def GetDB():
 
     return db
 
-def GetAllGuesses():
+def GetAllReviews():
 
-    # Connect, query all guesses and then return the data
+    # Connect, query all reviews and then return the data
     db = GetDB()
-    guesses = db.execute("""SELECT Guesses.date, Guesses.game, Guesses.score, Users.username, Guesses.comments
-                            FROM Guesses JOIN Users ON Guesses.user_id = Users.id
+    reviews = db.execute("""SELECT Reviews.date, Reviews.game, Reviews.score, Users.username, Reviews.comments
+                            FROM Reviews JOIN Users ON Reviews.user_id = Users.id
                             ORDER BY date DESC""").fetchall()
     db.close()
-    return guesses
+    return reviews
 
 def CheckLogin(username, password):
 
@@ -61,7 +61,7 @@ def AddGuess(user_id, date, game, score, comments):
    
     # Get the DB and add the guess
     db = GetDB()
-    db.execute("INSERT INTO Guesses(user_id, date, game, score, comments) VALUES (?, ?, ?, ?, ?)",
+    db.execute("INSERT INTO Reviews(user_id, date, game, score, comments) VALUES (?, ?, ?, ?, ?)",
                (user_id, date, game, score, comments))
     db.commit()
 

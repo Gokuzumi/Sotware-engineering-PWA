@@ -9,3 +9,5 @@ CREATE TABLE Users(id INTEGER PRIMARy KEY AUTOINCREMENT,
                     password NOT NULL);*/
 
 /*ALTER TABLE Guesses ADD COMMENTS TEXT;*/
+
+/*ALTER TABLE Guesses RENAME TO Reviews;*/

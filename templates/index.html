@@ -21,7 +21,7 @@
 
 <br>
 
-<table class="guess_table">
+<table class="review_table">
 
     <thead>
         <th>Date</th>
@@ -32,13 +32,13 @@
     </thead>
 
     <tbody>
-        {% for guess in guesses %}
+        {% for review in reviews %}
         <tr>
-            <td>{{ guess['date'] }}</td>
-            <td>{{ guess['username'] }}</td>
-            <td>{{ guess['game'] }}</td>
-            <td>{{ guess['score'] }}</td>
-            <td>{{guess['comments']}}</td>
+            <td>{{ review['date'] }}</td>
+            <td>{{ review['username'] }}</td>
+            <td>{{ review['game'] }}</td>
+            <td>{{ review['score'] }}</td>
+            <td>{{review['comments']}}</td>
         </tr>
         {% endfor %}
     </tbody>
