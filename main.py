@@ -20,20 +20,19 @@ def Login():
     is not POST or if the login details are incorrect.
     """
 
-    # They sent us data, get the username and password
-    # then check if their details are correct.
+
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
 
-        # Did they provide good details
+
         user = db.CheckLogin(username, password)
         if user:
-            # Yes! Save their username then
+
             session['username'] = user['username']
             session['id'] = user['id']
 
-            # Send them back to the homepage
+
             return redirect("/")
 
     return render_template("login.html")
@@ -77,14 +76,11 @@ def Add():
     POST, and adds a new review to the database.
     :return: The `Add()` function is returning a redirect to the root path ("/") if the session username
     is None. If the request method is POST, it processes the form data and adds a new review to the
-    database using the `db.Addguess()` function. Finally, it renders the "add.html" template.
+    database using the `db.Addreview()` function. Finally, it renders the "add.html" template.
     """
 
+   
     if session.get('username') == None:
-        # The line `return redirect("/")` in the `Login()` function is redirecting the user to the
-        # root URL ("/") of the application after a successful login attempt. This means that if the
-        # user provides correct login credentials, they will be redirected to the homepage of the
-        # application.
         return redirect("/")
 
     # Did they click submit?
@@ -100,11 +96,17 @@ def Add():
     return render_template("add.html")
 
 
-##################################
-### New code ends here
-##################################
+
 @app.route("/Instructions", methods=["GET"])
 def Instructions():
+    """
+    The function `Instructions()` returns a rendered template for an HTML file named
+    "Instructions.html".
+    :return: The function `Instructions()` is returning a call to
+    `render_template("Instructions.html")`, which typically renders an HTML template named
+    "Instructions.html".
+    """
     return render_template ("Instructions.html")
+
 
 app.run(debug=True, port=5000)
