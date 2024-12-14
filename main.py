@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, redirect
 import db
 
 app = Flask(__name__)
-app.secret_key = "gtg"
+app.secret_key = "mvr"
 
 @app.route("/")
 def Home():
