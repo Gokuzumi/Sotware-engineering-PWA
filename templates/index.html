@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome to MVR Reviews. This website is dedicated to post honest reviews about Movies and Games that are avalible.</h2>
+<div class="container">
+    <p><br> Add a Review and tell us how you feel about certain games and movies!</br></p>
+    {% if session['username'] %}
+        <br>
+        <p>Hello {{ session['username'] }}</p>
+
+        <!-- -------------------- -->
+        <!-- New code starts here -->
+        <!-- -------------------- -->
+        <a href="/add"><button>Add Review</button></a>
+        <!-- -------------------- -->
+        <!-- New code ends here   -->
+        <!-- -------------------- -->
+    {% endif %}
+
+</div>
+
+<br>
+
+<table class="guess_table">
+
+    <thead>
+        <th>Date</th>
+        <th>Reviewer's Names</th>
+        <th>Movies/Games</th>
+        <th>Rating</th>
+        <th>Comments</th>
+    </thead>
+
+    <tbody>
+        {% for guess in guesses %}
+        <tr>
+            <td>{{ guess['date'] }}</td>
+            <td>{{ guess['username'] }}</td>
+            <td>{{ guess['game'] }}</td>
+            <td>{{ guess['score'] }}</td>
+            <td>{{guess['comments']}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}
