@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect
 import db
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = "mvr"
@@ -86,12 +87,15 @@ def Add():
     # Did they click submit?
     if request.method == "POST":
         user_id = session['id']
-        date = request.form['date']
+        datet = request.form['date']
         game = request.form['game']
         score = request.form['score']
         comments = request.form['comments']
         # Send the data to add our new review to the db
-        db.Addreview(user_id, date, game, score, comments)
+        #if date is null then current date is used.
+        if datet == '':
+            datet=date.today()
+        db.Addreview(user_id, datet, game, score, comments)
 
     return render_template("add.html")
 
